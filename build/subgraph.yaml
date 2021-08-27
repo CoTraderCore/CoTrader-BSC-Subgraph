@@ -1,6 +1,6 @@
 specVersion: 0.0.2
 schema:
-  file: ./schema.graphql
+  file: schema.graphql
 dataSources:
   - kind: ethereum/contract
     name: Contract
@@ -18,13 +18,13 @@ dataSources:
         - SmartFundAdded
       abis:
         - name: Contract
-          file: ./abis/Contract.json
+          file: Contract\abis\Contract.json
       eventHandlers:
         - event: OwnershipTransferred(indexed address,indexed address)
           handler: handleOwnershipTransferred
         - event: SmartFundAdded(indexed address,indexed address)
           handler: handleSmartFundAdded
-      file: ./src/mapping.ts
+      file: Contract\Contract.wasm
 templates:
   - kind: ethereum/contract
     name: SmartFund
@@ -42,7 +42,7 @@ templates:
         - SmartFundCreated
       abis:
         - name: SmartFund
-          file: ./abis/SmartFund.json
+          file: SmartFund\abis\SmartFund.json
       eventHandlers:
         - event: Deposit(indexed address,uint256,uint256,uint256)
           handler: handleDeposit
@@ -50,4 +50,4 @@ templates:
           handler: handleWithdraw
         - event: Trade(address,uint256,address,uint256)
           handler: handleTrade
-      file: ./src/mapping.ts
+      file: Contract\Contract.wasm
